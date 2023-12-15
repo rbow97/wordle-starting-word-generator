@@ -1,0 +1,1 @@
+# wordle-starting-word-generator
