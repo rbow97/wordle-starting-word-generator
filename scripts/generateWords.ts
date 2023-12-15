@@ -7,8 +7,9 @@ const words: Record<string, string> = {};
 
 let today = new Date();
 const dayInMilliseconds = 86400000;
+const numberOfDays = 365 * 5;
 
-for (let i = 0; i < 365; i++) {
+for (let i = 0; i < numberOfDays; i++) {
   const currentDate = today.toJSON().split("T")[0];
   words[currentDate] = generate({
     minLength: 5,
@@ -25,9 +26,7 @@ const filePath = path.resolve(rootDir, "app/data.ts");
 
 fs.writeFileSync(
   filePath,
-  `export const wordsByDate: Record<string, string> = ${JSON.stringify(
-    words,
-    null,
-    2
-  )}`
+  `const wordsByDate: Record<string, string> = ${JSON.stringify(words, null, 2)}
+  export default wordsByDate
+  `
 );
